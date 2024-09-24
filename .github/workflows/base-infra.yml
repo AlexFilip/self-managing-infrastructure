@@ -1,7 +1,5 @@
 name: Manage cloud infrastructure using github's own runner
 on:
-  workflow_call:
-
   push:
     - main
     - dev
