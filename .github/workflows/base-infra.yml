@@ -47,7 +47,6 @@ jobs:
         run: |
           terraform init
           terraform plan -out=tfplan
-          ls
 
       - uses: actions/upload-artifact@v4
         with:
@@ -69,7 +68,8 @@ jobs:
           name: tfplan
       - name: Terraform apply
         run: |
-          ls
           terraform init
           terraform apply tfplan
+          ls
+          cat Hello
 
