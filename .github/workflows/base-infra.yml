@@ -48,3 +48,28 @@ jobs:
           terraform init
           terraform plan -out=tfplan
           ls
+
+      - uses: actions/upload-artifact@v
+        with:
+          name: tfplan
+          path: tfplan
+          if-no-files-found: error
+          retention-days: 1
+
+  terraform-apply:
+    runs-on: ubuntu-latest
+    needs: terraform-plan
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: tfplan
+      - name: Terraform apply
+        run: |
+          ls
+          terraform init
+          terraform apply tfplan
+
