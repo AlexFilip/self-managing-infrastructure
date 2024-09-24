@@ -1,8 +1,9 @@
 name: Manage cloud infrastructure using github's own runner
 on:
   push:
-    - main
-    - dev
+    branches:
+      - main
+      - dev
 
 env:
   TERRAFORM_VERSION: 1.1.7
